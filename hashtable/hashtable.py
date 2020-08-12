@@ -89,7 +89,17 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        index = self.hash_index(key)
+
+        if self.HashTable[index] is None:
+            self.HashTable[index] = HashTableEntry(key, value)
+            self.size += 1
+            return
+
+        curr = self.HashTable[index]
+        self.HashTable[index] = HashTableEntry(key, value)
+        self.HashTable[index].next = curr
+        self.size += 1
 
 
     def delete(self, key):
@@ -100,7 +110,8 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        self.put(key, None)
+        self.size -= 1
 
 
     def get(self, key):
@@ -111,7 +122,18 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        index = self.hash_index(key)
+        node = self.HashTable[index]
+
+        while node is not None and node.key != key:
+
+            node = node.next
+
+        if node is None:
+            return None
+
+        else:
+            return node.value
 
 
     def resize(self, new_capacity):
