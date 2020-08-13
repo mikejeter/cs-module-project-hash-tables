@@ -143,7 +143,20 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        if new_capacity < MIN_CAPACITY:
+            new_capacity = MIN_CAPACITY
+
+        prev_HashTable = self.HashTable
+        self.capacity = new_capacity
+        self.HashTable = [None] * new_capacity
+        self.size = 0
+
+        # Rehash all the values from prev_HashTable and mod them into new table
+        for item in prev_HashTable:
+            current = item
+            while current:
+                self.put(current.key, current.value)
+                current = current.next
 
 
 
