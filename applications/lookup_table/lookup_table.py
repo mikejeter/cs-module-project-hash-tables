@@ -1,7 +1,7 @@
 import random
 import math
 
-cache = {}
+fast = {}
 
 def slowfun_too_slow(x, y):
     v = math.pow(x, y)
@@ -17,10 +17,10 @@ def slowfun(x, y):
     output, but completes quickly instead of taking ages to run.
     """
     
-    if (x, y) not in cache:
-        cache[(x, y)] = slowfun_too_slow(x, y)
+    if (x, y) not in fast:
+        fast[(x, y)] = slowfun_too_slow(x, y)
 
-    return cache[(x, y)]
+    return fast[(x, y)]
 
 
 
